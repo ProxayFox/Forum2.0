@@ -30,11 +30,11 @@ if (!empty($_POST['uname']) && $_POST['pwd']) {
        $_SESSION['email']   = $emil;
        $_SESSION['uname']   = $uname;
      } else {
-       echo "Fail: user password incorrect";
+       echo "Fail: Username/Password is incorrect";
      }
   } else {
     // Username does not exist
-    echo "Fail: Username is incorrect";
+    echo "Fail: Username/Password is incorrect";
   }
 } else {
   // missing items in the post request

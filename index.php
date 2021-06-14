@@ -63,10 +63,12 @@ include_once("./layout/header.php");
         $('#btnSignUp').click(function () {
             $('#signIn').addClass('hidden');
             $('#signUp').removeClass('hidden');
+            $('#loginAlert').addClass('hidden');
         });
         $('#hbtnSignIn').click(function () {
             $('#signUp').addClass('hidden');
             $('#signIn').removeClass('hidden');
+            $('#signupAlert').addClass('hidden');
         });
 
         // Post from log in form
@@ -78,6 +80,15 @@ include_once("./layout/header.php");
                 pwd: pwd
             }, function(data, status) {
                 console.log(data, status);
+                if (data === "Fail: Missing items") {
+                    $('#loginAlert').removeClass('hidden');
+                    $('#loginAlert').text(data);
+                } else if (data === "Fail: Username/Password is incorrect") {
+                    $('#loginAlert').removeClass('hidden');
+                    $('#loginAlert').text(data);
+                } else if (data === "success") {
+                    window.location.replace("https://proxweb.dev")
+                }
             })
         });
 
@@ -92,6 +103,19 @@ include_once("./layout/header.php");
                 email: email
             }, function (data, status) {
                 console.log(data, status);
+                if (data === "Fail: Missing items") {
+                    $('#signupAlert').removeClass('hidden');
+                    $('#signupAlert').text(data);
+                } else if (data === "Fail: Email is not valid") {
+                    $('#signupAlert').removeClass('hidden');
+                    $('#signupAlert').text(data);
+                } else if (data === "Fail: Email already exists") {
+                    $('#signupAlert').removeClass('hidden');
+                    $('#signupAlert').text(data);
+                } else if (data === "Fail: Username Already exists") {
+                    $('#signupAlert').removeClass('hidden');
+                    $('#signupAlert').text(data);
+                }
             });
         });
     });
@@ -105,6 +129,7 @@ include_once("./layout/header.php");
         <!-- Section for setting hidden and unhidden on click -->
         <!-- Sign In Section start -->
         <div class="" id="signIn">
+            <div class="alert alert-danger hidden" role="alert" id="loginAlert"></div>
             <label for="inputEmail" class="sr-only">
                 <input type="text" id="signinUsername" class="form-control" placeholder="Username" required autofocus>
             </label>
@@ -120,6 +145,7 @@ include_once("./layout/header.php");
         <!-- Sign In Section end -->
         <!-- Sign Up Section start -->
         <div class="hidden" id="signUp">
+            <div class="alert alert-danger hidden" role="alert" id="signupAlert"></div>
             <label for="inputEmail" class="sr-only">
                 <input type="text" id="signupUsername" class="form-control" placeholder="Username" required autofocus>
             </label>
