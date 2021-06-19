@@ -3,7 +3,7 @@ session_start();
 require_once ('../meekrodb/meekrodb-2.3.1/db.class.php');
 require_once ('../meekrodb/meekrodb-2.3.1/db.conf.php');
 
-if (!empty($_POST['uname']) && $_POST['pwd']) {
+if (!empty($_POST['uname']) && !empty($_POST['pwd'])) {
   $uname = $_POST['uname'];
   $pwd = $_POST['pwd'];
 
