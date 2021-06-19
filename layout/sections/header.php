@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +18,31 @@
     <!-- <script src='https://www.hCaptcha.com/1/api.js' async defer></script>-->
 </head>
 <body>
+<style>
+    .hidden {
+        display: none !important;
+    }
+</style>
+<script>
+    let sessionStatus = <?php if (!empty($_SESSION['status'])) {
+      echo 1;
+    } else {
+      echo 0;
+    } ?>;
+    $(document).ready(function (){
+        if (sessionStatus === 0) {
+            $('#header_logout').addClass('hidden');
+        } else {
+            $('#header_logout').removeClass('hidden');
+        }
+        $('#header_logout').click(function () {
+            $('#header_logout').load("db/work/logout.php", function(status){
+                console.log(status);
+            });
+        })
+
+    })
+</script>
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Navbar</a>
@@ -44,10 +72,9 @@
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
             </ul>
-<!--            <form class="d-flex">-->
-<!--                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
-<!--                <button class="btn btn-outline-success" type="submit">Search</button>-->
-<!--            </form>-->
+            <form class="d-flex">
+                <button class="btn btn-outline-danger hidden" id="header_logout">logout</button>
+            </form>
         </div>
     </div>
 </nav>

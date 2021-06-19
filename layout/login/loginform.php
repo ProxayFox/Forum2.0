@@ -19,10 +19,6 @@
         background-color: #f5f5f5;
     }
 
-    .hidden {
-        display: none !important;
-    }
-
     .form-signin {
         width: 100%;
         max-width: 330px;
@@ -82,7 +78,8 @@
                     $('#loginAlert').removeClass('hidden');
                     $('#loginAlert').text(data);
                 } else if (data === "success") {
-                    window.location.replace("https://proxweb.dev")
+                    $('#header_logout').removeClass('hidden');
+                    $('#sectionLoader').load("layout/main/mainPage.php");
                 }
             })
         });
