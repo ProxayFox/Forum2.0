@@ -63,7 +63,7 @@
         });
 
         // Post from log in form
-        $('#btnSignIn').click(function () {
+        $('#btnSignIn').on("keypress click", function (e) {
             let uname = $('#signinUsername').val();
             let pwd   = $('#signinPWD').val();
             $.post("db/work/login.php", {
@@ -74,9 +74,13 @@
                 if (data === "Fail: Missing items") {
                     $('#loginAlert').removeClass('hidden');
                     $('#loginAlert').text(data);
+                    $('#signinUsername').val("");
+                    $('#signinPWD').val("");
                 } else if (data === "Fail: Username/Password is incorrect") {
                     $('#loginAlert').removeClass('hidden');
                     $('#loginAlert').text(data);
+                    $('#signinUsername').val("");
+                    $('#signinPWD').val("");
                 } else if (data === "success") {
                     $('#header_logout').removeClass('hidden');
                     $('#sectionLoader').load("layout/main/mainPage.php");
@@ -85,7 +89,7 @@
         });
 
         // Post from signup form
-        $('#hbtnSignUp').click(function () {
+        $('#hbtnSignUp').on("keypress click", function (e) {
             let uname = $('#signupUsername').val();
             let pwd   = $('#signupPWD').val();
             let email = $('#signupEmail').val();
@@ -98,15 +102,24 @@
                 if (data === "Fail: Missing items") {
                     $('#signupAlert').removeClass('hidden');
                     $('#signupAlert').text(data);
+                    $('#signupUsername').val("");
+                    $('#signupEmail').val("");
+                    $('#signupPWD').val("");
                 } else if (data === "Fail: Email is not valid") {
                     $('#signupAlert').removeClass('hidden');
                     $('#signupAlert').text(data);
+                    $('#signupEmail').val("");
+                    $('#signupPWD').val("");
                 } else if (data === "Fail: Email already exists") {
                     $('#signupAlert').removeClass('hidden');
                     $('#signupAlert').text(data);
+                    $('#signupEmail').val("");
+                    $('#signupPWD').val("");
                 } else if (data === "Fail: Username Already exists") {
                     $('#signupAlert').removeClass('hidden');
                     $('#signupAlert').text(data);
+                    $('#signupUsername').val("");
+                    $('#signupPWD').val("");
                 }
             });
         });
