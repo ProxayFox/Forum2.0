@@ -1,7 +1,3 @@
-<?php
-require_once ('../../db/hCaptcha/conf.php');
-?>
-
 <style>
     html,
     body {
@@ -52,19 +48,51 @@ require_once ('../../db/hCaptcha/conf.php');
     }
 </style>
 
+<main class="text-center">
+    <section class="form-signin">
+        <img class="mb-4" src="img/logo/ProxyDerp.png" alt="logo" style="width: 72px;">
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <!-- Load in Signup or Signin -->
+        <div id="load"></div>
+        <!-- Function Buttons -->
+        <div class="d-grid gap-2 col-10 mx-auto">
+            <!-- playing with in Test branch -->
+            <div class="h-captcha" data-sitekey="<?php echo $siteKey_hCaptcha; ?>"></div>
+            <button class="btn btn-lg btn-primary btn-block" id="action">Sign In</button>
+            <button class="btn btn-lg btn-secondary btn-sm btn-block" id="swap">Sign Up</button>
+        </div>
+    </section>
+</main>
+
 <script>
     $(document).ready(function () {
+        // Load in each page depending on state
+        
+        $('#swap').hover(function() {
+            $('#load').load("./layout/login/loginform.signin.php");
+            console.log("test");
+        });
+
+
+
+
+        // $('#swap').click(function () {
+        //     $('.load').load("./layout/login/loginform.signup.php");
+        // }
+
+
+        
         // swapping between signin and signup
-        $('#btnSignUp').click(function () {
-            $('#signIn').addClass('hidden');
-            $('#signUp').removeClass('hidden');
-            $('#loginAlert').addClass('hidden');
-        });
-        $('#hbtnSignIn').click(function () {
-            $('#signUp').addClass('hidden');
-            $('#signIn').removeClass('hidden');
-            $('#signupAlert').addClass('hidden');
-        });
+        // $('#btnSignUp').click(function () {
+        //     $('#signIn').addClass('hidden');
+        //     $('#signUp').removeClass('hidden');
+        //     $('#loginAlert').addClass('hidden');
+        // });
+        // $('#hbtnSignIn').click(function () {
+        //     $('#signUp').addClass('hidden');
+        //     $('#signIn').removeClass('hidden');
+        //     $('#signupAlert').addClass('hidden');
+        // });
 
         // Post from log in form
         $('#btnSignIn').on("keypress click", function (e) {
@@ -131,12 +159,3 @@ require_once ('../../db/hCaptcha/conf.php');
         });
     });
 </script>
-
-<main class="text-center">
-    <section class="form-signin">
-        <img class="mb-4" src="img/logo/ProxyDerp.png" alt="logo" style="width: 72px;">
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <!-- Load in Signup or Signin -->
-        <div id="load"></div>
-    </section>
-</main>
