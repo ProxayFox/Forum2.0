@@ -1,3 +1,7 @@
+<?php
+require_once ('../../db/hCaptcha/conf.php');
+?>
+
 <style>
     html,
     body {
@@ -66,9 +70,11 @@
         $('#btnSignIn').on("keypress click", function (e) {
             let uname = $('#signinUsername').val();
             let pwd   = $('#signinPWD').val();
+            let hCap   = $('#SignInhiddenRecaptcha').val();
             $.post("db/work/login.php", {
                 uname: uname,
-                pwd: pwd
+                pwd: pwd,
+                hCap: hCap
             }, function(data, status) {
                 console.log(data, status);
                 if (data === "Fail: Missing items") {
@@ -130,45 +136,7 @@
     <section class="form-signin">
         <img class="mb-4" src="img/logo/ProxyDerp.png" alt="logo" style="width: 72px;">
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <!-- Section for setting hidden and unhidden on click -->
-        <!-- Sign In Section start -->
-        <div class="" id="signIn">
-            <div class="alert alert-danger hidden" role="alert" id="loginAlert"></div>
-            <label for="inputEmail" class="sr-only">
-                <input type="text" id="signinUsername" class="form-control" placeholder="Username" required autofocus>
-            </label>
-            <label for="inputPassword" class="sr-only">
-                <input type="password" id="signinPWD" class="form-control" placeholder="Password" required>
-            </label>
-            <!-- Signin Buttons -->
-            <div class="d-grid gap-2 col-10 mx-auto">
-                <!-- will eventually set this up after more testing outside of local -->
-                <!-- <div class="h-captcha" data-sitekey="--><?php //echo $siteKey_hCaptcha; ?><!--"></div>-->
-                <button class="btn btn-lg btn-primary btn-block" id="btnSignIn">Sign In</button>
-                <button class="btn btn-lg btn-secondary btn-sm btn-block" id="btnSignUp">Sign Up</button>
-            </div>
-        </div>
-        <!-- Sign In Section end -->
-        <!-- Sign Up Section start -->
-        <div class="hidden" id="signUp">
-            <div class="alert alert-danger hidden" role="alert" id="signupAlert"></div>
-            <label for="inputEmail" class="sr-only">
-                <input type="text" id="signupUsername" class="form-control" placeholder="Username" required autofocus>
-            </label>
-            <label for="inputEmail" class="sr-only">
-                <input type="email" id="signupEmail" class="form-control" placeholder="Email address" required autofocus>
-            </label>
-            <label for="inputPassword" class="sr-only">
-                <input type="password" id="signupPWD" class="form-control" placeholder="Password" required>
-            </label>
-            <!-- SignUp Buttons -->
-            <div class="d-grid gap-2 col-10 mx-auto">
-                <!-- will eventually set this up after more testing outside of local -->
-                <!-- <div class="h-captcha" data-sitekey="--><?php //echo $siteKey_hCaptcha; ?><!--"></div>-->
-                <button class="btn btn-lg btn-primary btn-block" id="hbtnSignUp">Sign UP</button>
-                <button class="btn btn-lg btn-secondary btn-sm btn-block" id="hbtnSignIn">Sign In</button>
-            </div>
-        </div>
-        <!-- Sign Up Section end -->
+        <!-- Load in Signup or Signin -->
+        <div id="load"></div>
     </section>
 </main>

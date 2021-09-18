@@ -2,10 +2,18 @@
 session_start();
 require_once ('../meekrodb/meekrodb-2.3.1/db.class.php');
 require_once ('../meekrodb/meekrodb-2.3.1/db.conf.php');
+require_once ('../hCaptcha/conf.php');
 
-if (!empty($_POST['uname']) && !empty($_POST['pwd'])) {
+if (!empty($_POST['uname']) && !empty($_POST['pwd'] && !empty($_POST['hCap']))) {
   $uname = $_POST['uname'];
   $pwd = $_POST['pwd'];
+  $hCap = $_POST['hCap'];
+
+  
+
+
+
+
 
   // Check if the username exists
  @$unameCheck = DB::queryFirstRow("SELECT UName FROM forum.userData WHERE UName =%s", $uname);

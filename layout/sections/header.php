@@ -15,7 +15,7 @@ session_start();
 	<!-- Jquery -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <!-- hCaptcha -->
-    <!-- <script src='https://www.hCaptcha.com/1/api.js' async defer></script>-->
+    <script src='https://www.hCaptcha.com/1/api.js' async defer></script>
     <!-- MD loader -->
     <script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@2/dist/zero-md.min.js"></script>
 </head>
