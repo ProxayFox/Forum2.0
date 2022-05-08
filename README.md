@@ -38,4 +38,5 @@ It's been about a year or two since I last coded, so I'm expecting this to be ba
 Setup and addition of hCaptcha for better security from spammers <br>
 Will also need to setup a spam banning or timeout for further prevention
 
-
+## Lets Get Back To It 08/05/2022
+Lets try and get back into action on getting back on track of setting this up
